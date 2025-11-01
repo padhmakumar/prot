@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Padhmakumar V — Software Engineer & Technical Trainer</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+  <!-- Lightbox for Gallery -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css"/>
+
+  <style>
+    :root{
+      --bg:#0a0e1a;
+      --card:#0f1628;
+      --glass: rgba(255,255,255,0.05);
+      --glass-strong: rgba(255,255,255,0.08);
+      --accent1: #9d4edd;
+      --accent2: #ff4d6d;
+      --accent3: #ffb84d;
+      --accent4: #00d9ff;
+      --text:#e0e7ff;
+      --muted: #94a3b8;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(ellipse at 10% 10%, rgba(157,78,221,0.15), transparent 15%),
+                  radial-gradient(ellipse at 90% 90%, rgba(255,77,109,0.12), transparent 20%),
+                  radial-gradient(ellipse at 50% 50%, rgba(0,217,255,0.08), transparent 30%),
+                  #0a0e1a;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+      padding-top: 70px;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar{
+      backdrop-filter: blur(12px) saturate(180%);
+      background: linear-gradient(90deg, rgba(10,14,26,0.85), rgba(15,22,40,0.7));
+      border-bottom: 1px solid var(--border);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      transition: all 0.3s ease;
+    }
+    .text-muted{
+        color: #fff!important;
+    }
+    .brand-accent{
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Hero */
+    .hero{
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 6rem 0 4rem;
+    }
+    .hero h1{
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .hero h2{
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--accent4);
+      margin-bottom: 1rem;
+    }
+    .hero .lead{
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    /* Floating Orbs */
+    .float-orb{
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.15;
+      animation: float 20s infinite ease-in-out;
+      z-index: 0;
+    }
+    .orb1{width: 300px; height: 300px; left: -80px; top: -60px; background: linear-gradient(45deg, var(--accent1), var(--accent2));}
+    .orb2{width: 220px; height: 220px; right: -40px; bottom: 10%; background: linear-gradient(45deg, var(--accent3), var(--accent4));}
+    .orb3{width: 180px; height: 180px; left: 30%; top: 20%; background: linear-gradient(45deg, var(--accent4), var(--accent1)); animation-delay: -7s;}
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+      50% { transform: translateY(-30px) translateX(20px) scale(1.1); }
+    }
+
+    /* Glass Cards */
+    .glass-card{
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .glass-card::before{
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent1), transparent);
+      opacity: 0.5;
+    }
+    .glass-card:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      border-color: rgba(157,78,221,0.3);
+    }
+
+    .avatar{
+      width: 140px; height: 140px;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 4px solid rgba(157,78,221,0.3);
+      box-shadow: 0 8px 25px rgba(157,78,221,0.2);
+    }
+
+    /* Skill Badges */
+    .skill-badge{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin: 4px;
+      transition: all 0.2s ease;
+      color: var(--text);
+    }
+    .skill-badge:hover{
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Progress Bar */
+    .progress{
+      height: 12px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+    .progress-bar{
+      border-radius: 50px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      position: relative;
+      overflow: hidden;
+    }
+    .progress-bar::after{
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Gallery */
+    .gallery-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .gallery-item{
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      position: relative;
+      height: 180px;
+    }
+    .gallery-item:hover{
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(157,78,221,0.25);
+      border-color: var(--accent1);
+    }
+    .gallery-item img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img{
+      transform: scale(1.1);
+    }
+    .gallery-caption{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
+      color: white;
+      padding: 1rem 0.8rem 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover .gallery-caption{
+      opacity: 1;
+    }
+
+    /* Service & Project Cards */
+    .service-card, .project-card{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    .service-card:hover, .project-card:hover{
+      transform: translateY(-10px);
+      border-color: var(--accent1);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .project-thumb{
+      height: 180px;
+      background: linear-gradient(135deg, rgba(157,78,221,0.2), rgba(255,77,109,0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent4);
+      font-size: 3rem;
+    }
+
+    /* Buttons */
+    .btn-gradient{
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: white;
+      border: none;
+      font-weight: 600;
+      padding: 0.65rem 1.5rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+    .btn-gradient:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(157,78,221,0.4);
+    }
+    .btn-outline-custom{
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 50px;
+      padding: 0.6rem 1.4rem;
+      transition: all 0.3s ease;
+    }
+    .btn-outline-custom:hover{
+      background: var(--accent1);
+      color: white;
+      border-color: var(--accent1);
+    }
+
+    /* Social Icons */
+    .social-btn{
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
+    }
+    .social-btn:hover{
+      background: var(--accent1);
+      color: white;
+      transform: translateY(-4px) scale(1.1);
+      border-color: var(--accent1);
+    }
+
+    /* Footer */
+    footer{
+      padding: 3rem 0 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Neon Text */
+    .neon-text{
+      text-shadow: 0 0 10px rgba(157,78,221,0.5), 0 0 20px rgba(157,78,221,0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px){
+      .hero h1{font-size: 2.4rem;}
+      .hero h2{font-size: 1.4rem;}
+      .avatar{width: 110px; height: 110px;}
+      .gallery-grid{grid-template-columns: repeat(2, 1fr);}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:1.1rem">PV</div>
+      <div class="d-none d-md-block">
+        <div class="brand-accent" style="font-size:1.1rem">Padhmakumar V</div>
+        <small style="color:var(--muted);font-size:0.8rem"> Software Engineer • Trainer </small>
+      </div>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header id="home" class="hero position-relative">
+  <div class="float-orb orb1"></div>
+  <div class="float-orb orb2"></div>
+  <div class="float-orb orb3"></div>
+
+  <div class="container position-relative" style="z-index:1">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <h1>Hi, I'm <span class="brand-accent neon-text">Padhmakumar V</span></h1>
+        <h2>Software Engineer & Technical Trainer</h2>
+        <p class="lead">Crafting scalable web apps, IoT solutions, and empowering teams through hands-on training. Passionate about clean code, innovation, and mentorship.</p>
+
+        <div class="mt-4 d-flex flex-wrap gap-2">
+          <a href="#projects" class="btn btn-lg btn-gradient"><i class="fa fa-briefcase me-2"></i>View Projects</a>
+          <a href="#contact" class="btn btn-lg btn-gradient"><i class="fa fa-envelope me-2"></i>Contact Me</a>
+        </div>
+      </div>
+
+      <div class="col-lg-5 text-center mt-5 mt-lg-0">
+        <div class="glass-card text-center">
+          <h5 class="neon-text" style="font-weight:700">Padhmakumar V</h5>
+          <p style="color:var(--accent4);font-weight:500">Full-Stack Developer | Mentor</p>
+          <p class="small" style="color:var(--muted)">Turning ideas into reality with code, circuits, and training.</p>
+
+          <div class="d-flex justify-content-center gap-2 mt-3">
+            <a class="social-btn" href="tel:+91 9361647619" title="Phone"><i class="fa fa-phone"></i></a>
+            <a class="social-btn" href="padhmakumar2901@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+            <a class="social-btn" href="https://www.linkedin.com/in/padhmakumar-v-a57712232" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="container mt-5">
+
+  <!-- About & Education -->
+  <section id="about" class="mb-5">
+    <div class="row gy-4">
+      <div class="col-lg-7">
+        <div class="glass-card">
+          <h3 class="neon-text mb-3">About Me</h3>
+          <p style="color:var(--muted);line-height:1.7">I'm a passionate Software Engineer and Technical Trainer with <strong>2.5 years</strong> of experience building scalable web applications, IoT systems, and mentoring aspiring developers. I specialize in full-stack development, embedded programming, and delivering impactful training programs.</p>
+
+          <div class="row mt-4">
+            <div class="col-sm-6">
+              <h6 class="text-info">Soft Skills</h6>
+              <div class="d-flex flex-wrap">
+                <span class="skill-badge">Leadership</span>
+                <span class="skill-badge">Mentorship</span>
+                <span class="skill-badge">Communication</span>
+                <span class="skill-badge">Teamwork</span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <h6 class="text-info">Tech Stack</h6>
+              <div class="d-flex flex-wrap">
+                <span class="skill-badge">PHP</span>
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">C</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">MySQL</span>
+                <span class="skill-badge">IoT</span>
+                <span class="skill-badge">Embedded C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="col-lg-5">
+        <div class="glass-card">
+            <h5 class="neon-text">Education</h5>
+            <div class="timeline position-relative mt-3" style="padding-left:1.5rem">
+                <div
+                    style="position:absolute;left:12px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent1),var(--accent2));opacity:0.3;">
+                </div>
+                <div class="mb-3 position-relative">
+                    <strong>B.Sc. Computer Science</strong>
+                    <div class="small text-muted">Kaamadhenu Arts & Science College | 8.1 CGPA | 2020–2023</div>
+                </div>
+                <div class="mb-3 position-relative">
+                    <strong>Higher Secondary</strong>
+                    <div class="small text-muted">Govt. HSS | 60% | 2019–2020</div>
+                </div>
+                <div class="mb-3 position-relative">
+                    <strong>Secondary School</strong>
+                    <div class="small text-muted">Govt. HSS | 75.4% | 2017–2018</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="mb-5">
+    <h3 class="neon-text mb-4">Experience</h3>
+    <div class="glass-card p-4">
+      <div class="d-flex gap-3">
+        <div style="width:6px;background:linear-gradient(180deg,var(--accent1),var(--accent2));border-radius:6px;flex-shrink:0"></div>
+        <div>
+          <h5 class="mb-1">Software Engineer & Technical Trainer</h5>
+          <p class="small text-info mb-2">Techvolt Software Pvt. Ltd., Coimbatore — June 2023 – Present</p>
+          <ul class="text-muted small" style="line-height:1.8">
+            <li>Designed and deployed production-grade web applications using PHP, MySQL, and JavaScript</li>
+            <li>Mentored 250+ interns and junior developers through workshops and code reviews</li>
+            <li>Conducted technical training sessions on web dev, IoT, and embedded systems</li>
+            <li>Led cross-functional teams to meet project deadlines with 100% delivery rate</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Services -->
+  <section id="skills" class="mb-5">
+    <div class="row gy-4">
+      <div class="col-lg-6">
+        <h4 class="neon-text mb-3">Technical Skills</h4>
+        <div class="glass-card p-4">
+          <div class="mb-3">
+            <div class="d-flex justify-content-between text-sm"><span>PHP & Web Development</span><span class="text-info">90%</span></div>
+            <div class="progress mt-2"><div class="progress-bar" style="width:90%"></div></div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between text-sm"><span>Python Programming</span><span class="text-info">90%</span></div>
+            <div class="progress mt-2"><div class="progress-bar" style="width:90%;background:linear-gradient(90deg,var(--accent3),var(--accent4))"></div></div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between text-sm"><span>Embedded & IoT</span><span class="text-info">85%</span></div>
+            <div class="progress mt-2"><div class="progress-bar" style="width:85%;background:linear-gradient(90deg,var(--accent4),var(--accent1))"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <h4 class="neon-text mb-3">Services</h4>
+        <div class="row g-3">
+          <div class="col-md-6"><div class="service-card"><h6><i class="fa fa-laptop text-info me-2"></i>Web Development</h6><p class="small text-muted">Full-stack apps with PHP, JS, MySQL</p></div></div>
+          <div class="col-md-6"><div class="service-card"><h6><i class="fa fa-microchip text-info me-2"></i>IoT Solutions</h6><p class="small text-muted">Sensors, data, automation</p></div></div>
+          <div class="col-md-6"><div class="service-card"><h6><i class="fa fa-chalkboard-teacher text-info me-2"></i>Training</h6><p class="small text-muted">Workshops for students & teams</p></div></div>
+          <div class="col-md-6"><div class="service-card"><h6><i class="fa fa-users text-info me-2"></i>Mentorship</h6><p class="small text-muted">1:1 guidance for juniors</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="mb-5">
+    <h3 class="neon-text mb-4">Featured Projects</h3>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-thumb"><i class="fa fa-window-restore"></i></div>
+          <div class="p-3">
+            <h5>E-Portal for Jobs & Internships</h5>
+            <p class="small text-muted">PHP, MySQL, JS — Admin + Candidate Portal</p>
+            <div class="d-flex gap-2 mt-3">
+              <a class="btn btn-sm btn-outline-custom" data-bs-toggle="modal" data-bs-target="#proj1">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-thumb"><i class="fa fa-database"></i></div>
+          <div class="p-3">
+            <h5>CRM System</h5>
+            <p class="small text-muted">Full-stack CRM with billing & tracking</p>
+            <div class="d-flex gap-2 mt-3">
+              <a class="btn btn-sm btn-outline-custom" data-bs-toggle="modal" data-bs-target="#proj2">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-thumb"><i class="fa fa-recycle"></i></div>
+          <div class="p-3">
+            <h5>Scrap & Complaint Tracker</h5>
+            <p class="small text-muted">Citizen portal for municipal services</p>
+            <div class="d-flex gap-2 mt-3">
+              <a class="btn btn-sm btn-outline-custom" data-bs-toggle="modal" data-bs-target="#proj3">Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="mb-5">
+    <h3 class="neon-text mb-4">Gallery</h3>
+    <div class="glass-card p-4">
+      <p class="text-muted mb-4">Moments from workshops, projects, and tech events.</p>
+      <div class="gallery-grid">
+        <a href="./images/work1.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/work1.jpeg" alt="Workshop">
+          <div class="gallery-caption">Conducting IoT Workshop</div>
+        </a>
+        <a href="./images/work2.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/work2.jpeg" alt="IoT Project">
+          <div class="gallery-caption">IoT Sensor Demo</div>
+        </a>
+        <a href="./images/class1.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/class1.jpeg" alt="Team">
+          <div class="gallery-caption">With Intern Batch</div>
+        </a>
+         <a href="./images/class2.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/class2.jpeg" alt="Team">
+          <div class="gallery-caption">With Intern Batch Project Explanation</div>
+        </a>
+        </a>
+         <a href="./images/class3.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/class3.jpeg" alt="Team">
+          <div class="gallery-caption">Session Time</div>
+        </a>
+        
+        <a href="./images/sem1.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/sem1.jpeg" alt="Event">
+          <div class="gallery-caption">Techvolt Event</div>
+        </a>
+        <a href="./images/sem2.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/sem2.jpeg" alt="Event">
+          <div class="gallery-caption">IoT Workshop</div>
+        </a>
+         <a href="./images/sem3.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/sem3.jpeg" alt="Event">
+          <div class="gallery-caption">IoT Workshop </div>
+        </a>
+         <a href="./images/sem4.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/sem4.jpeg" alt="Event">
+          <div class="gallery-caption">Web Development Workshop</div>
+        </a>
+          <a href="./images/work11.jpeg" data-lightbox="gallery" class="gallery-item">
+          <img src="./images/work11.jpeg" alt="Event">
+          <div class="gallery-caption">Conducting Web Development Workshop</div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="mb-5">
+    <h3 class="neon-text mb-4">Let's Connect</h3>
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="glass-card p-4">
+          <h5>Reach Out</h5>
+          <div class="mt-3">
+            <p><i class="fa fa-phone text-info me-2"></i><strong>+91 93616 47619</strong></p>
+            <p><i class="fa fa-envelope text-info me-2"></i><a href="padhmakumar2901@gmail.com" style="color:var(--text)">padhmakumar2901@gmail.com</a></p>
+            <p><i class="fab fa-linkedin text-info me-2"></i><a href="https://www.linkedin.com/in/padhmakumar-v-a57712232" style="color:var(--text)">Padhmakumar.v</a></p>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume" class="mb-5">
+    <h3 class="neon-text mb-4">Resume</h3>
+    <div class="glass-card p-4 text-center">
+      <p class="text-muted">Download my detailed resume in PDF or Word format.</p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="./images/Padhma Kumar CV_0 (1).pdf" class="btn btn-gradient"><i class="fa fa-file-pdf me-2"></i>Download PDF</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container text-center">
+    <p>&copy; <strong>Padhmakumar V</strong> — 2025.<i class="fa fa-heart text-danger"></i></p>
+  </div>
+</footer>
+
+<!-- Project Modals -->
+<div class="modal fade" id="proj1" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">E-Portal for Internship & Job Enquiry</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Tech:</strong> HTML, CSS, JavaScript, MySQL, PHP</p>
+        <p><strong>Role:</strong> Full-stack development & UI design</p>
+        <p class="text-muted">The E-Portal for Internship and Job Enquiry is a web-based platform that
+allows recruiters to register and manage job and internship postings while enabling
+candidates to submit applications and track their status.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="proj2" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Customer Relationship Management (CRM)</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Tech:</strong> HTML, CSS, JavaScript, MySQL, PHP</p>
+        <p class="text-muted">To build a centralized CRM system that helps manage students applying for
+internships, track company recruiters, monitor registrations, manage billing and
+collections, and keep records of company expenses. This system aims to simplify the
+internship application workflow and enhance company operation visibility</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="proj3" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Digital Scrap Collection & Complaint Tracking</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Tech:</strong> HTML, CSS, JavaScript, MySQL, PHP</p>
+        <p class="text-muted">The objective of this project is to develop an Digital scrap collection and
+complaint tracking system that streamlines municipal waste handling by allowing
+citizens to schedule scrap pickups, request non-scheduled collections, file complaints,
+and track the status of their requests. The system aims to improve efficiency in
+municipal services, enhance transparency, reduce manual effort, and ensure timely
+response to public needs through a user-friendly web interface for both residents and
+municipal staff.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<script>
+  // Floating orbs animation
+  document.querySelectorAll('.float-orb').forEach((orb, i) => {
+    orb.style.animationDelay = `-${i * 5}s`;
+  });
+
+  // Lightbox config
+  lightbox.option({
+    'resizeDuration': 300,
+    'fadeDuration': 400,
+    'imageFadeDuration': 400,
+    'wrapAround': true
+  });
+</script>
+</body>
+</html>
